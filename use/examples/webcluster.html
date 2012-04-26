@@ -14,17 +14,50 @@
 	<script src="/style/js/jquery/jquery-1.7.1.min.js"></script>
 	<script src="/style/js/jquery/jquery-ui-1.8.18.custom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/style/js/jquery/smoothness/jquery-ui-1.8.18.custom.css" />
+	
+<!-- Clipboard support -->
+<script src="/style/js/zeroclipboard/ZeroClipboard.js"></script>
+<style type="text/css">
+.clipboard_container { float: right; padding: 8px; }
+.clipboard_button {
+    background-image: url("/style/icons/clipboard-green-normal.png");
+    background-size: 18px 21px;
+    width: 18px; height: 21px;
+}
+.clipboard_button.hover  { background-image: url("/style/icons/clipboard-green-hover.png"); }
+.clipboard_button.active  { background-image: url("/style/icons/clipboard-green-click.png"); }'
+</style>
+<script type="text/javascript"> <!-- clipboard -->
+ZeroClipboard.setMoviePath( '/style/js/zeroclipboard/ZeroClipboard.swf' );
+</script>
+<script type="text/javascript"> <!-- clipboard positioning -->
+$(document).ready(function() {
+  $('<div class="clipboard_container" title="Copy to Clipboard">'+
+    '<div class="clipboard_button"/>'+
+  '</div>').insertBefore($('div.highlight'))
+  $('div.clipboard_container').each(function(index) {
+    var clipboard = new ZeroClipboard.Client();
+    clipboard.glue( $(this).find(":first")[0], $(this)[0] );
+    var target = $(this).next();
+    var txt = target.text().trim();
+    if (target.find('code.bash')) {
+      txt = txt.replace(/^[^%$]*[%$] /, "").replace(new RegExp('\n[^%$]*[%$] ','g'), "\n");
+    }
+    clipboard.setText(txt);
+  });
+});
+</script>
 
-	<script>
+<script type="text/javascript"> <!-- search -->
 	$(function() {
 		$('#simple_google').submit(function() {
       		$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="qfront"]').val());
         return true;
 		});
     });
-	</script>
+</script>
 
-<script type="text/javascript">
+<script type="text/javascript"> <!-- analytics -->
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30530918-1']);
 _gaq.push(['_trackPageview']);
@@ -147,6 +180,10 @@ _gaq.push(['_trackPageview']);
         
     
         
+        
+            
+        
+            
         
             
         
@@ -289,6 +326,7 @@ build, and run:</p>
 <div class="highlight"><pre><code class="bash">% git clone https://github.com/brooklyncentral/brooklyn-examples.git
 % <span class="nb">cd </span>brooklyn-examples
 % mvn clean install
+% <span class="nb">export </span><span class="nv">EXAMPLES_DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre>
 </div>
 
@@ -325,7 +363,8 @@ with a single line:</p>
         <span class="nl">war:</span> <span class="s">&quot;classpath://hello-world-webapp.war&quot;</span><span class="o">,</span> 
         <span class="nl">httpPort:</span> <span class="mi">8080</span><span class="o">)</span>
         
-    <span class="c1">// (other housekeeping removed, including public static void main)</span>
+    <span class="c1">// other housekeeping removed, including public static void main</span>
+    <span class="c1">// you&#39;ll find this in the github repo code mentioned above</span>
      
 <span class="o">}</span>
 </code></pre>
@@ -339,7 +378,7 @@ with a single line:</p>
 
 
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> /path/to/brooklyn-examples/simple-web-cluster
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster
 % ./demo-web-cluster.sh
 </code></pre>
 </div>
@@ -361,7 +400,7 @@ this can also be deployed to your favourite cloud, let's pretend it's Amazon Ire
 
 
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> /path/to/brooklyn-examples/simple-web-cluster
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster
 % ./demo-web-server.sh aws-ecs:eu-west-1
 </code></pre>
 </div>
@@ -407,8 +446,7 @@ with an Nginx load-balancer set up in front of them, and backed by a MySQL datab
     <span class="o">{</span>
         <span class="n">web</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">configure</span><span class="o">(</span>
             <span class="nl">httpPort:</span> <span class="s">&quot;8080+&quot;</span><span class="o">,</span> 
-            <span class="o">(</span><span class="n">JBoss7Server</span><span class="o">.</span><span class="na">JAVA_OPTIONS</span><span class="o">):</span>
-                <span class="c1">// -Dbrooklyn.example.db.url=&quot;jdbc:mysql://192.168.1.2:3306/visitors?user=brooklyn\\&amp;password=br00k11n&quot;</span>
+            <span class="o">(</span><span class="n">UsesJava</span><span class="o">.</span><span class="na">JAVA_OPTIONS</span><span class="o">):</span>
                 <span class="o">[</span><span class="s">&quot;brooklyn.example.db.url&quot;</span><span class="o">:</span> <span class="n">valueWhenAttributeReady</span><span class="o">(</span><span class="n">mysql</span><span class="o">,</span> <span class="n">MySqlNode</span><span class="o">.</span><span class="na">MYSQL_URL</span><span class="o">,</span>
                     <span class="o">{</span> <span class="s">&quot;jdbc:&quot;</span><span class="o">+</span><span class="n">it</span><span class="o">+</span><span class="s">&quot;visitors?user=${DB_USERNAME}\\&amp;password=${DB_PASSWORD}&quot;</span> <span class="o">})</span> <span class="o">]);</span>
 
@@ -435,14 +473,20 @@ tweak the database start script, or drop in your favourite WAR.</p>
 
 
 
-<p>This project includes an intermediate nginx-web-cluster only example,
-in <code>WebClusterExample</code>, and a few demonstrations of other syntaxes (classes ending <code>Alt</code>).
-Tweak the scripts to use these, or run in your IDE (which may take <a href="/dev/build/ide.html">a bit of setup</a>).</p>
+<p>The project includes several variants of the examples shown here.
+In particular note the pure-Java version in <code>WebClusterDatabaseExampleAltJava.java</code>
+some other variations in syntax (the <code>*Alt*</code> files), and a
+web-only cluster (no database) in <code>WebClusterExample</code>.</p>
 
 
 
 
 <p>The webapp that is used is included under <code>examples/hello-world-webapp</code>.</p>
+
+
+
+
+<p>You may wish to check out the <a href="../global-web-fabric">Global Web Fabric example</a> next.</p>
 
 
 
@@ -579,7 +623,17 @@ Tweak the scripts to use these, or run in your IDE (which may take <a href="/dev
         
             
               <div class="toc-3 ">
+	            <a href="/use/examples/global-web-fabric/index.html"><div class="toc-3-item">Global Web Fabric</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
 	            <a href="/use/examples/whirrhadoop/index.html"><div class="toc-3-item">Whirr Hadoop Cluster</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/use/examples/portable-cloudfoundry/index.html"><div class="toc-3-item">Portable Cloud Foundry</div></a>
               </div>
         
             </div></div>
@@ -590,7 +644,7 @@ Tweak the scripts to use these, or run in your IDE (which may take <a href="/dev
         
 	      <div class="toc-2 ">
       
-	        <a href="/use/api/index.html"><div class="toc-2-item">API Reference</div></a>
+	        <a href="/use/api/index.html"><div class="toc-2-item">API Reference (javadoc)</div></a>
       
           </div>
     
@@ -639,7 +693,7 @@ Tweak the scripts to use these, or run in your IDE (which may take <a href="/dev
         
             
               <div class="toc-3 ">
-	            <a href="http://github.com/brooklyncentral"><div class="toc-3-item">Git Repository (github)</div></a>
+	            <a href="http://github.com/brooklyncentral/brooklyn"><div class="toc-3-item">brooklyn.git (github)</div></a>
               </div>
         
             </div></div>
@@ -720,7 +774,7 @@ Tweak the scripts to use these, or run in your IDE (which may take <a href="/dev
         
             
               <div class="toc-3 ">
-	            <a href="https://github.com/brooklyncentral/brooklyn"><div class="toc-3-item">Github code</div></a>
+	            <a href="https://github.com/brooklyncentral/"><div class="toc-3-item">Github repo</div></a>
               </div>
         
             
