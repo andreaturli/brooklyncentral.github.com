@@ -5,15 +5,18 @@
   <title>Brooklyn Project Governance</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
-  <link rel="stylesheet" type="text/css" href="/v/0.4.0-SNAPSHOT/style/main.css" />
-  <link rel="stylesheet" type="text/css" href="/v/0.4.0-SNAPSHOT/style/page.css" />
-  <link rel="stylesheet" type="text/css" href="/v/0.4.0-SNAPSHOT/style/toc.css" />
-  <link rel="stylesheet" type="text/css" href="/v/0.4.0-SNAPSHOT/style/docs/code.css" />
+  <link rel="stylesheet" href="/v/0.4.0-SNAPSHOT/style/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/v/0.4.0-SNAPSHOT/style/toc.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/v/0.4.0-SNAPSHOT/style/docs/code.css" type="text/css" media="screen" />
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   
 	<!-- Sidebar/ToC Scripts and CSS -->
 	<script src="/v/0.4.0-SNAPSHOT/style/js/jquery/jquery-1.7.1.min.js"></script>
 	<script src="/v/0.4.0-SNAPSHOT/style/js/jquery/jquery-ui-1.8.18.custom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/v/0.4.0-SNAPSHOT/style/js/jquery/smoothness/jquery-ui-1.8.18.custom.css" />
+	
+	<script type="text/javascript" src="/v/0.4.0-SNAPSHOT/style/js/superfish.js"></script>
 	
 <!-- Clipboard support -->
 <script src="/v/0.4.0-SNAPSHOT/style/js/zeroclipboard/ZeroClipboard.js"></script>
@@ -48,6 +51,19 @@ $(document).ready(function() {
 });
 </script>
 
+    <script type="text/javascript">
+        // initialise menu delay
+        jQuery(function(){
+            jQuery('ul#mainmenu').superfish({ 
+                autoArrows:  false,  // disable generation of arrow mark-up 
+                dropShadows: false,  // disable drop shadows 
+                disableHI:   true,   // set to true to disable hoverIntent detection 
+                delay:       500,    // the delay in milliseconds that the mouse can remain outside a submenu without it closing 
+                speed:       'fast', 
+            });
+        });
+    </script>
+
 <script type="text/javascript"> <!-- search -->
 	$(function() {
 		$('#simple_google').submit(function() {
@@ -72,73 +88,78 @@ _gaq.push(['_trackPageview']);
 </head>
 
 <body>
-  <div id="all">
 
-    <div id="page_header" class="page_row">
-     <table width="100%"><tr><td rowspan="2">
-      <div id="header_logo">
-        <a href = "/"><img height="68" width="220" border='0' src="/v/0.4.0-SNAPSHOT/style/brooklyn-logo.png"/></a>
-      </div>
-     </td><td align="right" valign="top" width="100%">
-        <div id="top-right-quick-links">
-            <a href="/v/0.4.0-SNAPSHOT/meta/contact.html">Contact</a> &nbsp;|&nbsp;
-            <a href="/v/0.4.0-SNAPSHOT/start/download.html">Download</a> &nbsp;|&nbsp;
-            <a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a>
+    <ul id="shortcuts" title="Accessibility shortcuts menu">
+        <li><a href="#maincontent">Skip to main content</a></li>
+    </ul>
+   
+
+<div id="container">
+
+    <div id="header">
+    
+        <div id="identity">
+            <a href="http://brooklyncentral.github.com/" rel="home">Brooklyn</a>
         </div>
-     </td></tr>
-     <tr><td valign="bottom">
-     </td></tr></table>
-    </div>
+        
+        <ul id="quicklinks">
+            <li><a href="/v/0.4.0-SNAPSHOT/meta/contact.html">Contact</a></li>
+            <li><a href="/v/0.4.0-SNAPSHOT/start/download.html">Download</a></li>
+            <li><a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a></li>
+        </ul>
 
-    
+        <div id="menubar">  
 
 
 
 
 
-<div id="topbar">
-<table height="100%"><tr style="vertical-align: middle;"><td width="100%" align="left" style="padding-bottom: 12px; padding-left: 18px;">
 
-  
-  
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/index.html">Overview</a>
 
-  
-  
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/start/download.html">Download</a>
+<ul id="mainmenu"><!-- INSERT LINKS -->
+            
 
   
   
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/start/walkthrough/index.html">Walkthrough</a>
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/index.html">Overview</a></li>
 
   
   
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/use/guide/index.html">Guide</a>
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/start/download.html">Download</a></li>
 
   
   
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/use/examples/index.html">Examples</a>
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/start/walkthrough/index.html">Walkthrough</a></li>
 
   
   
-  <a class="topbar-item " href="/v/0.4.0-SNAPSHOT/dev/code/index.html">Contributing</a>
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/use/guide/index.html">Guide</a></li>
 
-</td><td align="right" style="padding-top: 5px; padding-right: 18px;">
-      <div id="search_box">
-        <form id="simple_google" action="http://www.google.com/search" method="get">
-        <input name="q" type="hidden" />
-        <input name="qfront" type="text" placeholder='Search'/></p>
-        </form>
-      </div>
-</td></table>
+  
+  
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/use/examples/index.html">Examples</a></li>
 
-</div>
-
-    <div class="page_row">
+  
+  
+  <li class=""><a href="/v/0.4.0-SNAPSHOT/dev/code/index.html">Contributing</a></li>
 
 
-      <div id="page_content">
-        
+</ul>                    
+
+            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search">
+                <input type="text" class="searchinput" value="Search: type &amp; hit enter" name="qfront" id="qfront" onfocus="if (this.value == 'Search: type &amp; hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type &amp; hit enter';}" />
+                <input type="hidden" id="q" value="Search" />
+            </form>
+            
+        </div>
+                
+    </div><!--header-->
+    
+    <div id="contentcontainer">
+    
+        <div id="maincontent">
+
+
   
 
 
@@ -289,27 +310,19 @@ _gaq.push(['_trackPageview']);
 
 
 
-
-<div class="breadcrumbs">
-    <span class="breadcrumb-item bc1"><a class='breadcrumb bc1' href="/v/0.4.0-SNAPSHOT/meta/governance.html">Meta</a></span>
+            
+<p id="breadcrumb">
+    <a href="/v/0.4.0-SNAPSHOT/meta/governance.html">Meta</a>
     
-        <span class="bcsep bc1">&raquo;</span> <span class="breadcrumb-item bc2"><a class='breadcrumb bc2' href="/v/0.4.0-SNAPSHOT/meta/governance.html">Governance</a></span>
+        &raquo; <a href="/v/0.4.0-SNAPSHOT/meta/governance.html">Governance</a>
         
     
-</div>
+</p>
 
-<!-- FIND HIERARCHY IN TOC AND USE THAT
-        
-        
-        <span class="breadcrumb-item"><a class='breadcrumb' href="/">Home</a></span>
-        
- -->
- 
-		
-		<h1 id="header_title">Brooklyn Project Governance</h1>
-		<hr/>
 
-		<p>Brooklyn's management is modelled on the Apache approach whereby
+<h1 id="header_title">Brooklyn Project Governance</h1>
+    
+<p>Brooklyn's management is modelled on the Apache approach whereby
 people guilty of consistent, high-quality reliable contributions
 are invited to become <strong>committers</strong>.</p>
 
@@ -371,13 +384,11 @@ but only PMC members' votes are binding:</p>
 
 <p>The process of the PMC vote is otherwise identical to normal project/committer votes.</p>
 
-      </div>
 
-      <div id="page_toc">
-        <!-- Sidebar -->
+        </div><!--maincontent-->
         
-<div id="sidebar_image"><img width="204" src="/v/0.4.0-SNAPSHOT/style/brooklyn-bridge-v2.png"/></div>
-<br/>
+      <div id="sidebar">
+      
 
 
   
@@ -389,7 +400,6 @@ but only PMC members' votes are binding:</p>
 
 <div id="sidebar_toc">
 
-    
     
     
     
@@ -434,7 +444,6 @@ but only PMC members' votes are binding:</p>
   
       </div>
 
-    
     
     
     
@@ -535,7 +544,6 @@ but only PMC members' votes are binding:</p>
   
       </div>
 
-    
     
     
     
@@ -681,7 +689,6 @@ but only PMC members' votes are binding:</p>
     
     
     
-    
 	  <div class="toc-1 ">
   
 	    <a href="/v/0.4.0-SNAPSHOT/license/index.html"><div class="toc-1-item toc-1-header ">License</div></a>
@@ -743,7 +750,6 @@ but only PMC members' votes are binding:</p>
     
     
     
-    
 	  <div class="toc-1 toc-active">
   
 	    <a href="/v/0.4.0-SNAPSHOT/meta/governance.html"><div class="toc-1-item toc-1-header ">Meta</div></a>
@@ -780,21 +786,20 @@ but only PMC members' votes are binding:</p>
 </div>
 <br/>
 
+
       </div>
 
-    </div>
+    </div><!--contentcontainer-->
+        
+    <div id="footer">
+        <p id="copyright">
+            <b>brooklyn is distributed under the Apache License v2.0.</b><br/>
+            brooklyn is a registered trademark of Cloudsoft Corporation.<br/>
+            &copy; 2012 Cloudsoft Corporation.
+        </p>
+    </div><!--footer -->
 
-    <div class="page_row"/>
-
-<hr/>
-
-    <div id="page_footer" class="page_row">
-      <b>brooklyn is distributed under the Apache License v2.0.</b><br/>
-      brooklyn is a registered trademark of Cloudsoft Corporation.<br/>
-      &copy; 2012 Cloudsoft Corporation.
-    </div>
-
-  </div>
+</div><!--container-->
 
 </body>
 </html>

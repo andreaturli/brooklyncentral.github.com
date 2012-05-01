@@ -53,7 +53,7 @@ Ready for something more interesting?  Try this:
 simple-web-cluster% ./demo-web-and-data.sh
 {% endhighlight %}
 
-This launches the class ``WebClusterDatabaseExample`` (also described in the [walkthrough]({{ site.url }}/use/walkthrough.html))
+This launches the class ``WebClusterDatabaseExample`` (also described in the [walkthrough]({{ site.url }}/start/walkthrough/index.html))
 which launches a pool of web-servers -- of size 1 initially,
 but manually configurable (if you stop the policy first, in the GUI, then use the ``resize`` effector) --
 with an Nginx load-balancer set up in front of them, and backed by a MySQL database.
