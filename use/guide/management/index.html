@@ -5,18 +5,15 @@
   <title>Runtime Management</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
-  <link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/style/toc.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/style/docs/code.css" type="text/css" media="screen" />
-
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <link rel="stylesheet" type="text/css" href="/style/main.css" />
+  <link rel="stylesheet" type="text/css" href="/style/page.css" />
+  <link rel="stylesheet" type="text/css" href="/style/toc.css" />
+  <link rel="stylesheet" type="text/css" href="/style/docs/code.css" />
   
 	<!-- Sidebar/ToC Scripts and CSS -->
 	<script src="/style/js/jquery/jquery-1.7.1.min.js"></script>
 	<script src="/style/js/jquery/jquery-ui-1.8.18.custom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/style/js/jquery/smoothness/jquery-ui-1.8.18.custom.css" />
-	
-	<script type="text/javascript" src="/style/js/superfish.js"></script>
 	
 <!-- Clipboard support -->
 <script src="/style/js/zeroclipboard/ZeroClipboard.js"></script>
@@ -51,19 +48,6 @@ $(document).ready(function() {
 });
 </script>
 
-    <script type="text/javascript">
-        // initialise menu delay
-        jQuery(function(){
-            jQuery('ul#mainmenu').superfish({ 
-                autoArrows:  false,  // disable generation of arrow mark-up 
-                dropShadows: false,  // disable drop shadows 
-                disableHI:   true,   // set to true to disable hoverIntent detection 
-                delay:       500,    // the delay in milliseconds that the mouse can remain outside a submenu without it closing 
-                speed:       'fast', 
-            });
-        });
-    </script>
-
 <script type="text/javascript"> <!-- search -->
 	$(function() {
 		$('#simple_google').submit(function() {
@@ -88,78 +72,73 @@ _gaq.push(['_trackPageview']);
 </head>
 
 <body>
+  <div id="all">
 
-    <ul id="shortcuts" title="Accessibility shortcuts menu">
-        <li><a href="#maincontent">Skip to main content</a></li>
-    </ul>
-   
-
-<div id="container">
-
-    <div id="header">
-    
-        <div id="identity">
-            <a href="http://brooklyncentral.github.com/" rel="home">Brooklyn</a>
+    <div id="page_header" class="page_row">
+     <table width="100%"><tr><td rowspan="2">
+      <div id="header_logo">
+        <a href = "/"><img height="68" width="220" border='0' src="/style/brooklyn-logo.png"/></a>
+      </div>
+     </td><td align="right" valign="top" width="100%">
+        <div id="top-right-quick-links">
+            <a href="/meta/contact.html">Contact</a> &nbsp;|&nbsp;
+            <a href="/start/download.html">Download</a> &nbsp;|&nbsp;
+            <a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a>
         </div>
+     </td></tr>
+     <tr><td valign="bottom">
+     </td></tr></table>
+    </div>
+
+    
+
+
+
+
+
+<div id="topbar">
+<table height="100%"><tr style="vertical-align: middle;"><td width="100%" align="left" style="padding-bottom: 12px; padding-left: 18px;">
+
+  
+  
+  <a class="topbar-item " href="/index.html">Overview</a>
+
+  
+  
+  <a class="topbar-item " href="/start/download.html">Download</a>
+
+  
+  
+  <a class="topbar-item " href="/start/walkthrough/index.html">Walkthrough</a>
+
+  
+  
+  <a class="topbar-item toc-active" href="/use/guide/index.html">Guide</a>
+
+  
+  
+  <a class="topbar-item " href="/use/examples/index.html">Examples</a>
+
+  
+  
+  <a class="topbar-item " href="/dev/code/index.html">Contributing</a>
+
+</td><td align="right" style="padding-top: 5px; padding-right: 18px;">
+      <div id="search_box">
+        <form id="simple_google" action="http://www.google.com/search" method="get">
+        <input name="q" type="hidden" />
+        <input name="qfront" type="text" placeholder='Search'/></p>
+        </form>
+      </div>
+</td></table>
+
+</div>
+
+    <div class="page_row">
+
+
+      <div id="page_content">
         
-        <ul id="quicklinks">
-            <li><a href="/meta/contact.html">Contact</a></li>
-            <li><a href="/start/download.html">Download</a></li>
-            <li><a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a></li>
-        </ul>
-
-        <div id="menubar">  
-
-
-
-
-
-
-
-<ul id="mainmenu"><!-- INSERT LINKS -->
-            
-
-  
-  
-  <li class=""><a href="/index.html">Overview</a></li>
-
-  
-  
-  <li class=""><a href="/start/download.html">Download</a></li>
-
-  
-  
-  <li class=""><a href="/start/walkthrough/index.html">Walkthrough</a></li>
-
-  
-  
-  <li class="toc-active"><a href="/use/guide/index.html">Guide</a></li>
-
-  
-  
-  <li class=""><a href="/use/examples/index.html">Examples</a></li>
-
-  
-  
-  <li class=""><a href="/dev/code/index.html">Contributing</a></li>
-
-
-</ul>                    
-
-            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search">
-                <input type="text" class="searchinput" value="Search: type &amp; hit enter" name="qfront" id="qfront" onfocus="if (this.value == 'Search: type &amp; hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type &amp; hit enter';}" />
-                <input type="hidden" id="q" value="Search" />
-            </form>
-            
-        </div>
-                
-    </div><!--header-->
-    
-    <div id="contentcontainer">
-    
-        <div id="maincontent">
-
-
   
 
 
@@ -208,15 +187,6 @@ _gaq.push(['_trackPageview']);
         
             
         
-    
-        
-        
-            
-        
-            
-        
-            
-        
             
         
     
@@ -229,38 +199,6 @@ _gaq.push(['_trackPageview']);
             
         
             
-        
-            
-        
-            
-        
-    
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    
-        
         
     
         
@@ -279,24 +217,85 @@ _gaq.push(['_trackPageview']);
         
     
         
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
         
     
 
-
-
-            
-<p id="breadcrumb">
-    <a href="/use/guide/index.html">User Guide</a>
     
-        &raquo; <a href="/use/guide/management/index.html">Management</a>
+    
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
         
     
-</p>
-
-
-<h1 id="header_title">Runtime Management</h1>
+        
+        
     
-<p><a name="introduction"></a>
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    
+        
+        
+    
+
+
+
+
+<div class="breadcrumbs">
+    <span class="breadcrumb-item bc1"><a class='breadcrumb bc1' href="/use/guide/index.html">User Guide</a></span>
+    
+        <span class="bcsep bc1">&raquo;</span> <span class="breadcrumb-item bc2"><a class='breadcrumb bc2' href="/use/guide/management/index.html">Management</a></span>
+        
+    
+</div>
+
+<!-- FIND HIERARCHY IN TOC AND USE THAT
+        
+        
+        <span class="breadcrumb-item"><a class='breadcrumb' href="/">Home</a></span>
+        
+        <span class="bcsep">&raquo;</span> <span class="breadcrumb-item"><a class='breadcrumb' href="/use">use</a></span>
+        
+        
+        <span class="bcsep">&raquo;</span> <span class="breadcrumb-item"><a class='breadcrumb' href="/use/guide">guide</a></span>
+        
+        
+ -->
+ 
+		
+		<h1 id="header_title">Runtime Management</h1>
+		<hr/>
+
+		<p><a name="introduction"></a>
 brooklyn uses many of the ideas from autonomic computing to implement management of entities in a structured and reusable fashion (including provisioning,
 healing, and optimising).</p>
 
@@ -344,6 +343,51 @@ but some of the most common ones are:</p>
 <p>These can be specified as a shell environment variable or as a Java system property,
 although in those contexts the conventional format <code>BROOKLYN_JCLOUDS_AWS_EC2_IDENTITY</code>
 is supported and recommended.</p>
+
+<p><a name="cli"></a></p>
+
+<h2>Command Line Interface</h2>
+
+<p>Brooklyn comes with a Command Line Interface (cli) that makes it easier to launch an application.</p>
+
+<p>In order to have easy access to the cli it is useful to configure the PATH environment variable to also point to the cli's bin directory:</p>
+
+<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn/
+% <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-0.4..0-SNAPSHOT-dist/brooklyn/bin
+</code></pre>
+</div>
+
+
+<p>If you have set this up correctly you should be able to invoke the <code>brooklyn</code> command:</p>
+
+<div class="highlight"><pre><code class="bash">% brooklyn
+</code></pre>
+</div>
+
+
+<p>To get information about all the supported cli options just run:</p>
+
+<div class="highlight"><pre><code class="bash">% brooklyn <span class="nb">help</span>
+usage: brooklyn <span class="o">[(</span>-q | --quiet<span class="o">)]</span> <span class="o">[(</span>-v | --verbose<span class="o">)]</span> &lt;<span class="nb">command</span>&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
+
+The most commonly used brooklyn commands are:
+    <span class="nb">help     </span>Display <span class="nb">help </span>information about brooklyn
+    launch   Starts a brooklyn application. Note that a BROOKLYN_CLASSPATH environment variable needs to be <span class="nb">set </span>up beforehand to point to the user application classpath.
+
+See <span class="s1">&#39;brooklyn help &lt;command&gt;&#39;</span> <span class="k">for </span>more information on a specific command.
+</code></pre>
+</div>
+
+
+<p>Here is an example of the commands you might run to launch a Brooklyn application:</p>
+
+<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn
+% <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-0.4.0-M1-dist/brooklyn/bin
+% <span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/examples/simple-web-cluster/target/brooklyn-example-simple-web-cluster-0.4.0-M1.jar
+% brooklyn launch --app brooklyn.demo.SingleWebServerExample --location localhost
+</code></pre>
+</div>
+
 
 <p><a name="console"></a></p>
 
@@ -406,13 +450,27 @@ Selecting a specific entity allows you to access detailed information about that
 
 <h3>Security</h3>
 
-<p>In this release only two Spring Security users are created: user and admin. Only the admin user has access to the Management Console.</p>
+<p>Security providers can be configured by specifying <code>brooklyn.security.provider</code> equal
+to the name of a class implementing <code>SecurityProvider</code>.
+An implementation of this could point to Spring, LDAP, OpenID or another identity management system.</p>
 
-<p>Admin access:   username: <em>admin</em>, password: <em>password</em>.</p>
+<p>The default implementation, <code>ExplicitUsersSecurityProvider</code>, reads from a list of users and passwords
+which should be specified as configuration parameters e.g. in <code>brooklyn.properties</code>.
+This configuration could look like:</p>
 
-<p>User access:    username: <em>user</em>, password: <em>password</em>.</p>
+<div class="highlight"><pre><code class="properties"><span class="na">brooklyn.security.explicit.users</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">brooklyn.security.explicit.user.admin</span><span class="o">=</span><span class="s">password</span>
+</code></pre>
+</div>
 
-<p>In future releases it will be possible to add and configure users.</p>
+
+<p>The <code>users</code> line should contain a comma-separated list. The special value <code>*</code> is accepted to permit all users.
+If no values are specified at all the above setting (<code>admin</code>/<code>password</code>) is used by default.</p>
+
+<p>If not using the web console, you should specify
+<code>brooklyn.security.provider=brooklyn.web.console.security.BlackholeSecurityProvider</code> to prevent inadvertant logins.
+During dev/test you can specify <code>brooklyn.security.provider=brooklyn.web.console.security.AnyoneSecurityProvider</code>
+to allow logins with no credentials.</p>
 
 <p><a name="observation-other"></a></p>
 
@@ -605,11 +663,13 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
 
 <p>Note that it is currently necessary to prune dead tasks, either periodically or by the caller. By default they are kept around for reference. It is expected that an enhancement in a future release will allow pruning completed and failed tasks after a specified amount of time.</p>
 
+      </div>
 
-        </div><!--maincontent-->
+      <div id="page_toc">
+        <!-- Sidebar -->
         
-      <div id="sidebar">
-      
+<div id="sidebar_image"><img width="204" src="/style/brooklyn-bridge-v2.png"/></div>
+<br/>
 
 
   
@@ -624,12 +684,14 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
     
     
     
+    
 	  <div class="toc-1 ">
   
 	    <a href="/start/index.html"><div class="toc-1-item">Start</div></a>
   
       </div>
 
+    
     
     
     
@@ -687,6 +749,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
             
               <div class="toc-3 ">
 	            <a href="/use/guide/management/index.html#startup-config"><div class="toc-3-item">Startup Configuration</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/use/guide/management/index.html#cli"><div class="toc-3-item">Command Line Interface</div></a>
               </div>
         
             
@@ -822,6 +889,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
 	            <a href="/use/guide/extras/index.html#messaging"><div class="toc-3-item">Messaging</div></a>
               </div>
         
+            
+              <div class="toc-3 ">
+	            <a href="/use/guide/extras/index.html#provisioning"><div class="toc-3-item">Provisioning</div></a>
+              </div>
+        
             </div></div>
       
           </div>
@@ -830,6 +902,7 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
   
       </div>
 
+    
     
     
     
@@ -863,6 +936,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
             
               <div class="toc-3 ">
 	            <a href="/use/examples/portable-cloudfoundry/index.html"><div class="toc-3-item">Portable Cloud Foundry</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/use/examples/messaging/index.html"><div class="toc-3-item">Publish-Subscribe Messaging</div></a>
               </div>
         
             </div></div>
@@ -933,20 +1011,21 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
 </div>
 <br/>
 
-
       </div>
 
-    </div><!--contentcontainer-->
-        
-    <div id="footer">
-        <p id="copyright">
-            <b>brooklyn is distributed under the Apache License v2.0.</b><br/>
-            brooklyn is a registered trademark of Cloudsoft Corporation.<br/>
-            &copy; 2012 Cloudsoft Corporation.
-        </p>
-    </div><!--footer -->
+    </div>
 
-</div><!--container-->
+    <div class="page_row"/>
+
+<hr/>
+
+    <div id="page_footer" class="page_row">
+      <b>brooklyn is distributed under the Apache License v2.0.</b><br/>
+      brooklyn is a registered trademark of Cloudsoft Corporation.<br/>
+      &copy; 2012 Cloudsoft Corporation.
+    </div>
+
+  </div>
 
 </body>
 </html>
