@@ -210,6 +210,8 @@ _gaq.push(['_trackPageview']);
         
             
         
+            
+        
     
         
         
@@ -391,8 +393,8 @@ with a single line:</p>
 
 
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster
-% ./demo-web-cluster.sh
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster/brooklyn-example-simple-web-cluster/bin
+% ./web-cluster.sh
 </code></pre>
 </div>
 
@@ -413,8 +415,8 @@ this can also be deployed to your favourite cloud, let's pretend it's Amazon Ire
 
 
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster
-% ./demo-web-server.sh aws-ecs:eu-west-1
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster/brooklyn-example-simple-web-cluster
+% ./web-server.sh aws-ec2:eu-west-1
 </code></pre>
 </div>
 
@@ -431,7 +433,8 @@ this can also be deployed to your favourite cloud, let's pretend it's Amazon Ire
 
 
 
-<div class="highlight"><pre><code class="bash">simple-web-cluster% ./demo-web-and-data.sh
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-web-cluster/brooklyn-example-simple-web-cluster
+% ./web-and-data.sh
 </code></pre>
 </div>
 
@@ -499,7 +502,7 @@ web-only cluster (no database) in <code>WebClusterExample</code>.</p>
 
 
 
-<p>You may wish to check out the <a href="../global-web-fabric">Global Web Fabric example</a> next.</p>
+<p>You may wish to check out the <a href="/v/0.4.0-SNAPSHOT/use/examples/global-web-fabric/">Global Web Fabric example</a> next.</p>
 
 
 
@@ -643,6 +646,11 @@ web-only cluster (no database) in <code>WebClusterExample</code>.</p>
             
               <div class="toc-3 ">
 	            <a href="/v/0.4.0-SNAPSHOT/use/examples/portable-cloudfoundry/index.html"><div class="toc-3-item">Portable Cloud Foundry</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/v/0.4.0-SNAPSHOT/use/examples/messaging/index.html"><div class="toc-3-item">Publish-Subscribe Messaging</div></a>
               </div>
         
             </div></div>

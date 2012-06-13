@@ -117,7 +117,7 @@ Package brooklyn.util.task
         <TR BGCOLOR="white" CLASS="TableRowColor">
         <TD WIDTH="15%"><B><A HREF="BasicExecutionContext.html" title="class in brooklyn/util/task">BasicExecutionContext</A></B></TD>
         <TD>A means of executing tasks against an ExecutionManager with a given bucket/set of tags pre-defined
- (so that it can look like an Executor and also supply ExecutorService#submit(Callable)#submit(Callable)</TD>
+ (so that it can look like an java.util.concurrent.Executor and also supply java.util.concurrent.ExecutorService#submit(java.util.concurrent.Callable)</TD>
         </TR>
 
         <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -154,13 +154,6 @@ Package brooklyn.util.task
         <TR BGCOLOR="white" CLASS="TableRowColor">
         <TD WIDTH="15%"><B><A HREF="ScheduledTask.html" title="class in brooklyn/util/task">ScheduledTask</A></B></TD>
         <TD></TD>
-        </TR>
-
-        <TR BGCOLOR="white" CLASS="TableRowColor">
-        <TD WIDTH="15%"><B><A HREF="SequentialTask.html" title="class in brooklyn/util/task">SequentialTask</A></B></TD>
-        <TD>runs tasks in order, waiting for one to finish before starting the next; return value here is TBD;
- (currently is all the return values of individual tasks, but we
- might want some pipeline support and eventually only to return final value...)</TD>
         </TR>
 
         <TR BGCOLOR="white" CLASS="TableRowColor">

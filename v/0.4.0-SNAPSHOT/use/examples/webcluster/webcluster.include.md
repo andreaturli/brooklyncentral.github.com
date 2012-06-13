@@ -26,8 +26,8 @@ public class SingleWebServerExample extends AbstractApplication {
 You can run this (on *nix or Mac) as follows:
 
 {% highlight bash %}
-% cd $EXAMPLES_DIR/simple-web-cluster
-% ./demo-web-cluster.sh
+% cd $EXAMPLES_DIR/simple-web-cluster/brooklyn-example-simple-web-cluster/bin
+% ./web-cluster.sh
 {% endhighlight %}
 
 
@@ -40,8 +40,8 @@ With appropriate setup (as described [here]({{ site.url }}/use/guide/management/
 this can also be deployed to your favourite cloud, let's pretend it's Amazon Ireland, as follows: 
 
 {% highlight bash %}
-% cd $EXAMPLES_DIR/simple-web-cluster
-% ./demo-web-server.sh aws-ecs:eu-west-1
+% cd $EXAMPLES_DIR/simple-web-cluster/brooklyn-example-simple-web-cluster
+% ./web-server.sh aws-ec2:eu-west-1
 {% endhighlight %}
 
 
@@ -50,7 +50,8 @@ this can also be deployed to your favourite cloud, let's pretend it's Amazon Ire
 Ready for something more interesting?  Try this:
 
 {% highlight bash %}
-simple-web-cluster% ./demo-web-and-data.sh
+% cd $EXAMPLES_DIR/simple-web-cluster/brooklyn-example-simple-web-cluster
+% ./web-and-data.sh
 {% endhighlight %}
 
 This launches the class ``WebClusterDatabaseExample`` (also described in the [walkthrough]({{ site.url }}/start/walkthrough/index.html))
@@ -94,6 +95,6 @@ web-only cluster (no database) in ``WebClusterExample``.
 
 The webapp that is used is included under ``examples/hello-world-webapp``.
 
-You may wish to check out the [Global Web Fabric example](../global-web-fabric) next.
+You may wish to check out the [Global Web Fabric example]({{ site.url }}/use/examples/global-web-fabric/) next.
 
 If you encounter any difficulties, please [tell us]({{ site.url }}/meta/contact.html) and we'll do our best to help.

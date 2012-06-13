@@ -1,5 +1,8 @@
+brooklyn.cli
 brooklyn.config
+brooklyn.config.render
 brooklyn.demo
+brooklyn.demo.webapp.hello
 brooklyn.enricher
 brooklyn.enricher.basic
 brooklyn.entity
@@ -15,7 +18,10 @@ brooklyn.entity.group
 brooklyn.entity.java
 brooklyn.entity.messaging
 brooklyn.entity.messaging.activemq
+brooklyn.entity.messaging.amqp
+brooklyn.entity.messaging.jms
 brooklyn.entity.messaging.qpid
+brooklyn.entity.messaging.rabbit
 brooklyn.entity.nosql
 brooklyn.entity.nosql.infinispan
 brooklyn.entity.nosql.redis
@@ -39,6 +45,8 @@ brooklyn.launcher
 brooklyn.location
 brooklyn.location.basic
 brooklyn.location.basic.jclouds
+brooklyn.location.basic.jclouds.pool
+brooklyn.location.basic.jclouds.templates
 brooklyn.location.geo
 brooklyn.management
 brooklyn.management.internal
@@ -48,11 +56,14 @@ brooklyn.policy.basic
 brooklyn.policy.followthesun
 brooklyn.policy.loadbalancing
 brooklyn.policy.resizing
+brooklyn.qa.longevity
+brooklyn.qa.longevity.webcluster
 brooklyn.test
 brooklyn.util
 brooklyn.util.flags
 brooklyn.util.internal
 brooklyn.util.internal.duplicates
+brooklyn.util.internal.ssh
 brooklyn.util.logging
 brooklyn.util.mutex
 brooklyn.util.task

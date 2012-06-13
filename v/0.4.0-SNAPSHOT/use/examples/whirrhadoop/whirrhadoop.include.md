@@ -22,8 +22,14 @@ with an arbitrary size, with one line using the ``WhirrHadoopCluster`` entity.
     WhirrCluster cluster = new WhirrHadoopCluster(this, size: 2, memory: 2048);
 {% endhighlight %}
 
-You can run this by running ``./demo-hadoop.sh``.
-This by default targets ``aws-ec2:eu-west-1``,
+You can run this by running:
+
+{% highlight bash %}
+% cd $EXAMPLES_DIR/hadoop-and-whirr/brooklyn-example-hadoop-and-whirr/bin
+% ./hadoop.sh aws-ec2:eu-west-1
+{% endhighlight %}
+
+This targets ``aws-ec2:eu-west-1``,
 so you will need to set your AWS credentials as described [here]({{site.url}}/use/guide/management/index.html#startup-config). 
 
 [![Web Console Showing Whirr-launched Hadoop Cluster](whirrhadoop-w750.png "Web Console Showing Whirr-launched Hadoop Cluster")](whirrhadoop.png) 
@@ -33,6 +39,7 @@ Once it is running, navigate to the Brooklyn web console to see the ``NAME_NODE_
 you can easily configure a larger application to use its own dedicated Hadoop cluster.)
 
 
+<a name="custom-whirr-recipe"></a>
 ## Custom Whirr Recipe
 
 The class ``WhirrExample`` shows how an arbitrary [Whirr](http://whirr.apache.org) recipe
@@ -48,7 +55,22 @@ whirr.instance-templates= 1 noop, 1 elasticsearch
     WhirrCluster cluster = new WhirrCluster(this, recipe: RECIPE);
 {% endhighlight %}
 
-This can be launched with the script ``./demo-whirr-recipe.sh``.
+This can be launched by running:
+
+{% highlight bash %}
+% cd $EXAMPLES_DIR/hadoop-and-whirr/brooklyn-example-hadoop-and-whirr/bin
+% ./whirr-recipe.sh aws-ec2:eu-west-1
+{% endhighlight %} 
+
+In the provided example this will deploy to AWS.
+
+If you would like to deploy to localhost, you can do this by running ``./whirr-recipe.sh localhost``. However, please note that currently there are some limitations when deploying to localhost:
+
+*	You can not deploy more than one server (noop doesn't count in the above case).
+*	This has only been tested on Ubuntu 10.04 and might cause problems on other operating systems.
+*	Your user will need to be configured for [passwordless ssh and passwordless sudo](http://docs.outerthought.org/lilyenterprise-docs-trunk/539-lily/541-lily.html) on localhost.
+
+
 Feel free to experiment with the instance template parameter,
 trying out other recipes from Whirr.
 
@@ -58,4 +80,16 @@ Chef and Puppet scripts you may wish to use.
 The Whirr state is loaded into Brooklyn, as well as saved to disk in the usual Whirr way.
 This means it is available for programmatic extensions (as is used for Hadoop),
 including defining sensors and effectors and applying policy:
-stop is available, with [resize](https://issues.apache.org/jira/browse/WHIRR-214) expected soon.
+stop is available, with [resize](https://issues.apache.org/jira/browse/WHIRR-214) expected soon
+(making it easy -- or at least much easier -- to write custom **elasticity policies**).
+
+
+## Integrating with Other Entities
+
+The real interest of Brooklyn working with Whirr, of course, is to combine systems such as Hadoop
+with your custom applications which use these systems.
+One example, combining the [Global Web Fabric example]({{ site.url }}/use/examples/global-web-fabric)
+with the Whirr Hadoop entity, is included in this example project.
+A Hadoop-based chatroom web app, performing map-reduce (and a few necessary contortions to work with private subnets)
+is in ``WebFabrixWithHadoopExample``. 
+ 

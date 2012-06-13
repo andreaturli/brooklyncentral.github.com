@@ -208,15 +208,6 @@ _gaq.push(['_trackPageview']);
         
             
         
-    
-        
-        
-            
-        
-            
-        
-            
-        
             
         
     
@@ -230,12 +221,25 @@ _gaq.push(['_trackPageview']);
         
             
         
+    
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
             
         
             
         
     
         
+        
+            
         
             
         
@@ -250,6 +254,8 @@ _gaq.push(['_trackPageview']);
     
     
         
+        
+            
         
             
         
@@ -345,6 +351,51 @@ but some of the most common ones are:</p>
 although in those contexts the conventional format <code>BROOKLYN_JCLOUDS_AWS_EC2_IDENTITY</code>
 is supported and recommended.</p>
 
+<p><a name="cli"></a></p>
+
+<h2>Command Line Interface</h2>
+
+<p>Brooklyn comes with a Command Line Interface (cli) that makes it easier to launch an application.</p>
+
+<p>In order to have easy access to the cli it is useful to configure the PATH environment variable to also point to the cli's bin directory:</p>
+
+<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn/
+% <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-0.4..0-SNAPSHOT-dist/brooklyn/bin
+</code></pre>
+</div>
+
+
+<p>If you have set this up correctly you should be able to invoke the <code>brooklyn</code> command:</p>
+
+<div class="highlight"><pre><code class="bash">% brooklyn
+</code></pre>
+</div>
+
+
+<p>To get information about all the supported cli options just run:</p>
+
+<div class="highlight"><pre><code class="bash">% brooklyn <span class="nb">help</span>
+usage: brooklyn <span class="o">[(</span>-q | --quiet<span class="o">)]</span> <span class="o">[(</span>-v | --verbose<span class="o">)]</span> &lt;<span class="nb">command</span>&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
+
+The most commonly used brooklyn commands are:
+    <span class="nb">help     </span>Display <span class="nb">help </span>information about brooklyn
+    launch   Starts a brooklyn application. Note that a BROOKLYN_CLASSPATH environment variable needs to be <span class="nb">set </span>up beforehand to point to the user application classpath.
+
+See <span class="s1">&#39;brooklyn help &lt;command&gt;&#39;</span> <span class="k">for </span>more information on a specific command.
+</code></pre>
+</div>
+
+
+<p>Here is an example of the commands you might run to launch a Brooklyn application:</p>
+
+<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn
+% <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn/bin
+% <span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/examples/simple-web-cluster/target/brooklyn-example-simple-web-cluster-0.4.0-SNAPSHOT.jar
+% brooklyn launch --app brooklyn.demo.SingleWebServerExample --location localhost
+</code></pre>
+</div>
+
+
 <p><a name="console"></a></p>
 
 <h2>Management Web Console</h2>
@@ -406,13 +457,27 @@ Selecting a specific entity allows you to access detailed information about that
 
 <h3>Security</h3>
 
-<p>In this release only two Spring Security users are created: user and admin. Only the admin user has access to the Management Console.</p>
+<p>Security providers can be configured by specifying <code>brooklyn.security.provider</code> equal
+to the name of a class implementing <code>SecurityProvider</code>.
+An implementation of this could point to Spring, LDAP, OpenID or another identity management system.</p>
 
-<p>Admin access:   username: <em>admin</em>, password: <em>password</em>.</p>
+<p>The default implementation, <code>ExplicitUsersSecurityProvider</code>, reads from a list of users and passwords
+which should be specified as configuration parameters e.g. in <code>brooklyn.properties</code>.
+This configuration could look like:</p>
 
-<p>User access:    username: <em>user</em>, password: <em>password</em>.</p>
+<div class="highlight"><pre><code class="properties"><span class="na">brooklyn.security.explicit.users</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">brooklyn.security.explicit.user.admin</span><span class="o">=</span><span class="s">password</span>
+</code></pre>
+</div>
 
-<p>In future releases it will be possible to add and configure users.</p>
+
+<p>The <code>users</code> line should contain a comma-separated list. The special value <code>*</code> is accepted to permit all users.
+If no values are specified at all the above setting (<code>admin</code>/<code>password</code>) is used by default.</p>
+
+<p>If not using the web console, you should specify
+<code>brooklyn.security.provider=brooklyn.web.console.security.BlackholeSecurityProvider</code> to prevent inadvertant logins.
+During dev/test you can specify <code>brooklyn.security.provider=brooklyn.web.console.security.AnyoneSecurityProvider</code>
+to allow logins with no credentials.</p>
 
 <p><a name="observation-other"></a></p>
 
@@ -691,6 +756,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
         
             
               <div class="toc-3 ">
+	            <a href="/v/0.4.0-SNAPSHOT/use/guide/management/index.html#cli"><div class="toc-3-item">Command Line Interface</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
 	            <a href="/v/0.4.0-SNAPSHOT/use/guide/management/index.html#console"><div class="toc-3-item">Management Web Console</div></a>
               </div>
         
@@ -822,6 +892,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
 	            <a href="/v/0.4.0-SNAPSHOT/use/guide/extras/index.html#messaging"><div class="toc-3-item">Messaging</div></a>
               </div>
         
+            
+              <div class="toc-3 ">
+	            <a href="/v/0.4.0-SNAPSHOT/use/guide/extras/index.html#provisioning"><div class="toc-3-item">Provisioning</div></a>
+              </div>
+        
             </div></div>
       
           </div>
@@ -863,6 +938,11 @@ assert em.getTasksWithTag("a").every { Task t -&gt; t.isDone() }
             
               <div class="toc-3 ">
 	            <a href="/v/0.4.0-SNAPSHOT/use/examples/portable-cloudfoundry/index.html"><div class="toc-3-item">Portable Cloud Foundry</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/v/0.4.0-SNAPSHOT/use/examples/messaging/index.html"><div class="toc-3-item">Publish-Subscribe Messaging</div></a>
               </div>
         
             </div></div>

@@ -210,6 +210,8 @@ _gaq.push(['_trackPageview']);
         
             
         
+            
+        
     
         
         
@@ -395,8 +397,20 @@ with an arbitrary size, with one line using the <code>WhirrHadoopCluster</code> 
 
 
 
-<p>You can run this by running <code>./demo-hadoop.sh</code>.
-This by default targets <code>aws-ec2:eu-west-1</code>,
+<p>You can run this by running:</p>
+
+
+
+
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/hadoop-and-whirr/brooklyn-example-hadoop-and-whirr/bin
+% ./hadoop.sh aws-ec2:eu-west-1
+</code></pre>
+</div>
+
+
+
+
+<p>This targets <code>aws-ec2:eu-west-1</code>,
 so you will need to set your AWS credentials as described <a href="/v/0.4.0-SNAPSHOT/use/guide/management/index.html#startup-config">here</a>.</p>
 
 
@@ -410,6 +424,11 @@ so you will need to set your AWS credentials as described <a href="/v/0.4.0-SNAP
 <p>Once it is running, navigate to the Brooklyn web console to see the <code>NAME_NODE_URL</code> sensor.
 (And not that using <a href="/v/0.4.0-SNAPSHOT/use/guide/defining-applications/advanced-concepts.html#dependent"><code>attributeWhenReady</code></a>,
 you can easily configure a larger application to use its own dedicated Hadoop cluster.)</p>
+
+
+
+
+<p><a name="custom-whirr-recipe"></a></p>
 
 
 
@@ -438,8 +457,39 @@ can be run from within Brooklyn:</p>
 
 
 
-<p>This can be launched with the script <code>./demo-whirr-recipe.sh</code>.
-Feel free to experiment with the instance template parameter,
+<p>This can be launched by running:</p>
+
+
+
+
+<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/hadoop-and-whirr/brooklyn-example-hadoop-and-whirr/bin
+% ./whirr-recipe.sh aws-ec2:eu-west-1
+</code></pre>
+</div>
+
+
+
+
+<p>In the provided example this will deploy to AWS.</p>
+
+
+
+
+<p>If you would like to deploy to localhost, you can do this by running <code>./whirr-recipe.sh localhost</code>. However, please note that currently there are some limitations when deploying to localhost:</p>
+
+
+
+
+<ul>
+<li>You can not deploy more than one server (noop doesn't count in the above case).</li>
+<li>This has only been tested on Ubuntu 10.04 and might cause problems on other operating systems.</li>
+<li>Your user will need to be configured for <a href="http://docs.outerthought.org/lilyenterprise-docs-trunk/539-lily/541-lily.html">passwordless ssh and passwordless sudo</a> on localhost.</li>
+</ul>
+
+
+
+
+<p>Feel free to experiment with the instance template parameter,
 trying out other recipes from Whirr.</p>
 
 
@@ -451,7 +501,23 @@ Chef and Puppet scripts you may wish to use.
 The Whirr state is loaded into Brooklyn, as well as saved to disk in the usual Whirr way.
 This means it is available for programmatic extensions (as is used for Hadoop),
 including defining sensors and effectors and applying policy:
-stop is available, with <a href="https://issues.apache.org/jira/browse/WHIRR-214">resize</a> expected soon.</p>
+stop is available, with <a href="https://issues.apache.org/jira/browse/WHIRR-214">resize</a> expected soon
+(making it easy -- or at least much easier -- to write custom <strong>elasticity policies</strong>).</p>
+
+
+
+
+<h2>Integrating with Other Entities</h2>
+
+
+
+
+<p>The real interest of Brooklyn working with Whirr, of course, is to combine systems such as Hadoop
+with your custom applications which use these systems.
+One example, combining the <a href="/v/0.4.0-SNAPSHOT/use/examples/global-web-fabric">Global Web Fabric example</a>
+with the Whirr Hadoop entity, is included in this example project.
+A Hadoop-based chatroom web app, performing map-reduce (and a few necessary contortions to work with private subnets)
+is in <code>WebFabrixWithHadoopExample</code>.</p>
 
 
 
@@ -590,6 +656,11 @@ stop is available, with <a href="https://issues.apache.org/jira/browse/WHIRR-214
             
               <div class="toc-3 ">
 	            <a href="/v/0.4.0-SNAPSHOT/use/examples/portable-cloudfoundry/index.html"><div class="toc-3-item">Portable Cloud Foundry</div></a>
+              </div>
+        
+            
+              <div class="toc-3 ">
+	            <a href="/v/0.4.0-SNAPSHOT/use/examples/messaging/index.html"><div class="toc-3-item">Publish-Subscribe Messaging</div></a>
               </div>
         
             </div></div>
