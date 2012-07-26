@@ -360,7 +360,7 @@ is supported and recommended.</p>
 <p>In order to have easy access to the cli it is useful to configure the PATH environment variable to also point to the cli's bin directory:</p>
 
 <div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn/
-% <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-0.4..0-SNAPSHOT-dist/brooklyn/bin
+% <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn-0.4.0-SNAPSHOT/bin/
 </code></pre>
 </div>
 
@@ -386,10 +386,15 @@ See <span class="s1">&#39;brooklyn help &lt;command&gt;&#39;</span> <span class=
 </div>
 
 
-<p>Here is an example of the commands you might run to launch a Brooklyn application:</p>
+<p>Here is an example of the commands you might run to get the Brooklyn code, compile it and launch an application:</p>
 
-<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn
-% <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn/bin
+<div class="highlight">
+<pre><code class="bash">
+% git clone https://github.com/brooklyncentral/brooklyn.git
+% cd brooklyn
+% mvn clean install -DskipTests
+% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>$(pwd)
+% <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn-0.4.0-SNAPSHOT/bin/
 % <span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/examples/simple-web-cluster/target/brooklyn-example-simple-web-cluster-0.4.0-SNAPSHOT.jar
 % brooklyn launch --app brooklyn.demo.SingleWebServerExample --location localhost
 </code></pre>
