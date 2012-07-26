@@ -66,10 +66,22 @@ $(document).ready(function() {
 
 <script type="text/javascript"> <!-- search -->
 	$(function() {
-		$('#simple_google').submit(function() {
-      		$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="qfront"]').val());
-        return true;
-		});
+		$('#simple_google')
+			.submit(function() {
+				$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="brooklyn-search"]').val());
+			return true;
+			});
+		$('input[name="brooklyn-search"]').focus(function() {
+				if ($(this).val() === $(this).attr('placeholder')) {
+					$(this).val('');
+				}
+			})
+			.blur(function() {
+				if ($(this).val() === '') {
+					$(this).val($(this).attr('placeholder'));
+				}
+			})
+			.blur();
     });
 </script>
 
@@ -106,6 +118,7 @@ _gaq.push(['_trackPageview']);
             <li><a href="/meta/contact.html">Contact</a></li>
             <li><a href="/start/download.html">Download</a></li>
             <li><a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a></li>
+            <li><a href="https://github.com/brooklyncentral">GitHub</a></li>
         </ul>
 
         <div id="menubar">  
@@ -146,9 +159,9 @@ _gaq.push(['_trackPageview']);
 
 </ul>                    
 
-            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search">
-                <input type="text" class="searchinput" value="Search: type &amp; hit enter" name="qfront" id="qfront" onfocus="if (this.value == 'Search: type &amp; hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type &amp; hit enter';}" />
-                <input type="hidden" id="q" value="Search" />
+            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search" method="get">
+                <input type="text" class="searchinput" name="brooklyn-search" placeholder="Search: type &amp; hit enter" />
+                <input type="hidden" name="q" value="" />
             </form>
             
         </div>
@@ -359,22 +372,22 @@ is supported and recommended.</p>
 
 <p>In order to have easy access to the cli it is useful to configure the PATH environment variable to also point to the cli's bin directory:</p>
 
-<div class="highlight"><pre><code class="bash">% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn/
-% <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn-0.4.0-SNAPSHOT/bin/
+<div class="highlight"><pre><code class="bash"><span class="nv">BROOKLYN_HOME</span><span class="o">=</span>/path/to/brooklyn/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$BROOKLYN_HOME</span>/usage/dist/target/brooklyn-dist/bin/
 </code></pre>
 </div>
 
 
 <p>If you have set this up correctly you should be able to invoke the <code>brooklyn</code> command:</p>
 
-<div class="highlight"><pre><code class="bash">% brooklyn
+<div class="highlight"><pre><code class="bash">brooklyn
 </code></pre>
 </div>
 
 
 <p>To get information about all the supported cli options just run:</p>
 
-<div class="highlight"><pre><code class="bash">% brooklyn <span class="nb">help</span>
+<div class="highlight"><pre><code class="bash">brooklyn <span class="nb">help</span>
 usage: brooklyn <span class="o">[(</span>-q | --quiet<span class="o">)]</span> <span class="o">[(</span>-v | --verbose<span class="o">)]</span> &lt;<span class="nb">command</span>&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
 
 The most commonly used brooklyn commands are:
@@ -388,15 +401,13 @@ See <span class="s1">&#39;brooklyn help &lt;command&gt;&#39;</span> <span class=
 
 <p>Here is an example of the commands you might run to get the Brooklyn code, compile it and launch an application:</p>
 
-<div class="highlight">
-<pre><code class="bash">
-% git clone https://github.com/brooklyncentral/brooklyn.git
-% cd brooklyn
-% mvn clean install -DskipTests
-% <span class="nv">BROOKLYN_HOME</span><span class="o">=</span>$(pwd)
-% <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-0.4.0-SNAPSHOT-dist/brooklyn-0.4.0-SNAPSHOT/bin/
-% <span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/examples/simple-web-cluster/target/brooklyn-example-simple-web-cluster-0.4.0-SNAPSHOT.jar
-% brooklyn launch --app brooklyn.demo.SingleWebServerExample --location localhost
+<div class="highlight"><pre><code class="bash">git clone https://github.com/brooklyncentral/brooklyn.git
+<span class="nb">cd </span>brooklyn
+mvn clean install -DskipTests
+<span class="nv">BROOKLYN_HOME</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/usage/dist/target/brooklyn-dist/bin/
+<span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/examples/simple-web-cluster/target/classes
+brooklyn launch --app brooklyn.demo.SingleWebServerExample --location localhost
 </code></pre>
 </div>
 

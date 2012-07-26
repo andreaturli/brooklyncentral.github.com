@@ -7,7 +7,6 @@ brooklyn.enricher
 brooklyn.enricher.basic
 brooklyn.entity
 brooklyn.entity.basic
-brooklyn.entity.basic.legacy
 brooklyn.entity.basic.lifecycle
 brooklyn.entity.basic.lifecycle.legacy
 brooklyn.entity.brooklyn
@@ -50,12 +49,11 @@ brooklyn.location.basic.jclouds.templates
 brooklyn.location.geo
 brooklyn.management
 brooklyn.management.internal
-brooklyn.management.internal.task
 brooklyn.policy
+brooklyn.policy.autoscaling
 brooklyn.policy.basic
 brooklyn.policy.followthesun
 brooklyn.policy.loadbalancing
-brooklyn.policy.resizing
 brooklyn.qa.longevity
 brooklyn.qa.longevity.webcluster
 brooklyn.test

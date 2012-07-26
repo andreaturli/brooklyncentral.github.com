@@ -157,6 +157,13 @@ Package brooklyn.util.task
         </TR>
 
         <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SequentialTask.html" title="class in brooklyn/util/task">SequentialTask</A></B></TD>
+        <TD>runs tasks in order, waiting for one to finish before starting the next; return value here is TBD;
+ (currently is all the return values of individual tasks, but we
+ might want some pipeline support and eventually only to return final value...)</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
         <TD WIDTH="15%"><B><A HREF="SingleThreadedExecution.html" title="class in brooklyn/util/task">SingleThreadedExecution</A></B></TD>
         <TD>Instances of this class ensures that Tasks it is shown execute with in-order
  single-threaded semantics.</TD>
@@ -170,6 +177,11 @@ Package brooklyn.util.task
 
         <TR BGCOLOR="white" CLASS="TableRowColor">
         <TD WIDTH="15%"><B><A HREF="StackTraceSimplifier.html" title="class in brooklyn/util/task">StackTraceSimplifier</A></B></TD>
+        <TD>Utility class for cleaning up stacktraces.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Tasks.html" title="class in brooklyn/util/task">Tasks</A></B></TD>
         <TD></TD>
         </TR>
 

@@ -66,10 +66,22 @@ $(document).ready(function() {
 
 <script type="text/javascript"> <!-- search -->
 	$(function() {
-		$('#simple_google').submit(function() {
-      		$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="qfront"]').val());
-        return true;
-		});
+		$('#simple_google')
+			.submit(function() {
+				$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="brooklyn-search"]').val());
+			return true;
+			});
+		$('input[name="brooklyn-search"]').focus(function() {
+				if ($(this).val() === $(this).attr('placeholder')) {
+					$(this).val('');
+				}
+			})
+			.blur(function() {
+				if ($(this).val() === '') {
+					$(this).val($(this).attr('placeholder'));
+				}
+			})
+			.blur();
     });
 </script>
 
@@ -106,6 +118,7 @@ _gaq.push(['_trackPageview']);
             <li><a href="/meta/contact.html">Contact</a></li>
             <li><a href="/start/download.html">Download</a></li>
             <li><a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a></li>
+            <li><a href="https://github.com/brooklyncentral">GitHub</a></li>
         </ul>
 
         <div id="menubar">  
@@ -146,9 +159,9 @@ _gaq.push(['_trackPageview']);
 
 </ul>                    
 
-            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search">
-                <input type="text" class="searchinput" value="Search: type &amp; hit enter" name="qfront" id="qfront" onfocus="if (this.value == 'Search: type &amp; hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type &amp; hit enter';}" />
-                <input type="hidden" id="q" value="Search" />
+            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search" method="get">
+                <input type="text" class="searchinput" name="brooklyn-search" placeholder="Search: type &amp; hit enter" />
+                <input type="hidden" name="q" value="" />
             </form>
             
         </div>
@@ -336,17 +349,20 @@ _gaq.push(['_trackPageview']);
 
 <h2>The Distro</h2>
 
-<p>You can grab the distribution arifact, containing Brooklyn, its dependencies and launch scripts, here:</p>
+<p>You can grab the distribution artifact, containing Brooklyn, its dependencies and launch scripts, here:</p>
 
 <!-- BROOKLYN_VERSION_BELOW -->
 
+
 <ul>
-<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M1/brooklyn-dist-0.4.0-M1-dist.tar.gz">0.4.0-M1 tar.gz</a></li>
-<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M1/brooklyn-dist-0.4.0-M1-dist.zip">0.4.0-M1 zip</a></li>
+<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M2/brooklyn-dist-0.4.0-M2-dist.tar.gz">0.4.0-M2.tar.gz</a></li>
+<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M2/brooklyn-dist-0.4.0-M2-dist.zip">0.4.0-M2.zip</a></li>
+<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M1/brooklyn-dist-0.4.0-M1-dist.tar.gz">0.4.0-M1.tar.gz</a></li>
+<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-dist/0.4.0-M1/brooklyn-dist-0.4.0-M1-dist.zip">0.4.0-M1.zip</a></li>
 </ul>
 
-<p>Just download your preferred flavour and unpack.</p>
 
+<p>Just download your preferred flavour and unpack.</p>
 
 <p><a name="alljar"></a></p>
 
@@ -358,6 +374,7 @@ _gaq.push(['_trackPageview']);
 
 
 <ul>
+<li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-all/0.4.0-M2/">0.4.0-M2</a></li>
 <li><a href="http://developers.cloudsoftcorp.com/download/maven2/io/brooklyn/brooklyn-all/0.4.0-M1/">0.4.0-M1</a></li>
 <li><a href="http://ccweb.cloudsoftcorp.com/maven/libs-snapshot-local/io/brooklyn/brooklyn-all/0.4.0-SNAPSHOT/">SNAPSHOT</a></li>
 </ul>
@@ -369,14 +386,36 @@ _gaq.push(['_trackPageview']);
 
 <h2>Examples</h2>
 
-<p>You can checkout
-<a href="/use/examples">examples</a>
-from <a href="http://github.com/brooklyncentral/brooklyn-examples">github.com/brooklyncentral/brooklyn-examples</a>,
-build them with <a href="/dev/build/">maven (v3)</a>,
-and then run them with the <code>demo*.sh</code> scripts in the examples.
-This will take care of downloading Brooklyn and the dependencies.</p>
+<p>You can download the most recent stable examples from <a href="https://github.com/brooklyncentral/brooklyn-examples/tarball/master">here</a>.</p>
 
-<p>A good entry point is the <a href="/use/examples/webcluster.html">Simple Web Cluster</a>.</p>
+<p>If you prefer to do this from the command-line, use:</p>
+
+<div class="highlight"><pre><code class="bash">curl --location https://github.com/brooklyncentral/brooklyn-examples/tarball/master <span class="se">\</span>
+-o brooklyn-latest.tgz
+</code></pre>
+</div>
+
+
+<p>If you are looking for a specific version (versions of the examples are aligned with Brooklyn non-snapshot releases) try the following command:</p>
+
+<div class="highlight"><pre><code class="bash">curl --location https://github.com/brooklyncentral/brooklyn-examples/tarball/0.4.0-M2 <span class="se">\</span>
+-o brooklyn-0.4.0-M2.tgz
+</code></pre>
+</div>
+
+
+<p>You can also clone the <a href="http://github.com/brooklyncentral/brooklyn-examples">brooklyn-examples git repository</a>:</p>
+
+<div class="highlight"><pre><code class="bash">git clone https://github.com/brooklyncentral/brooklyn-examples.git
+</code></pre>
+</div>
+
+
+<p>Once you have the examples you can build them with <a href="/dev/build/">maven (v3)</a>.</p>
+
+<p>Note however, that you still need to have the Brooklyn installed in order to run them.</p>
+
+<p>A good entry point is the <a href="/use/examples/webcluster.html">Elastic Web Cluster</a>.</p>
 
 <p><a name="maven"></a></p>
 
@@ -413,8 +452,8 @@ This will take care of downloading Brooklyn and the dependencies.</p>
 
 <p>Brooklyn-All (used above) brings in all dependencies, including jclouds and Apache Whirr.
 If you prefer a smaller repo you might want just <code>brooklyn-core</code>,  <code>brooklyn-policies</code>,
-and some of <code>brooklyn-{software-{webapp,database,messaging},systems-hadoop}</code>.
-(Browse the full list <a href="http://ccweb.cloudsoftcorp.com/maven/libs-snapshot-local/brooklyn/">here</a>.)</p>
+and some of: <code>brooklyn-software-webapp</code>,  <code>brooklyn-software-database</code>, <code>brooklyn-software-messaging</code>, <code>brooklyn-systems-hadoop</code>.
+(Browse the full list <a href="http://ccweb.cloudsoftcorp.com/maven/libs-snapshot-local/io/brooklyn/">here</a>.)</p>
 
 <p><strong>TODO: we are moving to mavencentral so the repositories section will shortly be unnecessary</strong></p>
 

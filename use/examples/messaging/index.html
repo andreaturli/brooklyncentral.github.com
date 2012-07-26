@@ -66,10 +66,22 @@ $(document).ready(function() {
 
 <script type="text/javascript"> <!-- search -->
 	$(function() {
-		$('#simple_google').submit(function() {
-      		$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="qfront"]').val());
-        return true;
-		});
+		$('#simple_google')
+			.submit(function() {
+				$('input[name="q"]').val("site:" + document.location.hostname + " " + $('input[name="brooklyn-search"]').val());
+			return true;
+			});
+		$('input[name="brooklyn-search"]').focus(function() {
+				if ($(this).val() === $(this).attr('placeholder')) {
+					$(this).val('');
+				}
+			})
+			.blur(function() {
+				if ($(this).val() === '') {
+					$(this).val($(this).attr('placeholder'));
+				}
+			})
+			.blur();
     });
 </script>
 
@@ -106,6 +118,7 @@ _gaq.push(['_trackPageview']);
             <li><a href="/meta/contact.html">Contact</a></li>
             <li><a href="/start/download.html">Download</a></li>
             <li><a href="https://twitter.com/#!/search?q=brooklyncentral">Twitter</a></li>
+            <li><a href="https://github.com/brooklyncentral">GitHub</a></li>
         </ul>
 
         <div id="menubar">  
@@ -146,9 +159,9 @@ _gaq.push(['_trackPageview']);
 
 </ul>                    
 
-            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search">
-                <input type="text" class="searchinput" value="Search: type &amp; hit enter" name="qfront" id="qfront" onfocus="if (this.value == 'Search: type &amp; hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type &amp; hit enter';}" />
-                <input type="hidden" id="q" value="Search" />
+            <form method="get" id="simple_google" class="searchform" action="http://www.google.com/search" method="get">
+                <input type="text" class="searchinput" name="brooklyn-search" placeholder="Search: type &amp; hit enter" />
+                <input type="hidden" name="q" value="" />
             </form>
             
         </div>
@@ -336,29 +349,64 @@ Java AMQP message broker and clients using the
 
 
 
-<p>To use the examples, you'll need <code>git</code>, <code>java</code>, and <code>maven</code> (v3) installed.
-Then check them out from <a href="https://github.com/brooklyncentral/brooklyn-examples">github.com/brooklyncentral/brooklyn-examples</a>,
-build, and run:</p>
+<p>To use the examples, you'll need <code>curl</code>, <code>java</code>, and <code>maven</code> (v3) installed.</p>
 
 
 
 
-<div class="highlight"><pre><code class="bash">% git clone https://github.com/brooklyncentral/brooklyn-examples.git
-% <span class="nb">cd </span>brooklyn-examples
-% mvn clean install
-% <span class="nb">export </span><span class="nv">EXAMPLES_DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<p>First, grab a copy of the Brooklyn distribution:</p>
+
+
+
+
+<div class="highlight"><pre><code class="bash"><span class="c"># download and unpack</span>
+curl -L http://developers.cloudsoftcorp.com/maven/releases/io/brooklyn/brooklyn-dist/0.4.0-M2/<span class="se">\</span>
+brooklyn-dist-0.4.0-M2-dist.tar.gz | tar xzf -
+<span class="c"># set up an environment variable to point to it for convenience</span>
+<span class="nb">export </span><span class="nv">BROOKLYN_HOME</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/brooklyn
 </code></pre>
 </div>
 
 
 
 
-<p>If you hit any issues with the above, see the tips
-for <a href="/dev/build/index.html">Maven</a> and
-<a href="/dev/build/ide.html">IDEs</a>.</p>
+<p>Then, grab a copy of the brooklyn-examples source code and build with Maven:</p>
 
 
-<p>The project <code>examples/simple-messaging-pubsub</code> includes a deployment
+
+
+<div class="highlight"><pre><code class="bash"><span class="c"># download and unpack</span>
+curl -L https://github.com/brooklyncentral/brooklyn-examples/tarball/0.4.0-M2 | tar xzf -
+<span class="c"># set up an environment variable to point to it for convenience</span>
+<span class="nb">export </span><span class="nv">BROOKLYN_EXAMPLES_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/brooklyncentral-brooklyn-examples-b296711
+<span class="c"># build with Maven</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">BROOKLYN_EXAMPLES_DIR</span><span class="k">}</span>
+mvn clean install
+</code></pre>
+</div>
+
+
+
+
+<p>For more information about where to download brooklyn please
+see the <a href="/start/download.html">download page</a>.</p>
+
+
+
+
+<p>If you wish to learn more about the Brooklyn CLI used for launching an app,
+please visit <a href="/use/guide/management/index.html#cli">this section of the user guide</a>.</p>
+
+
+<p>The CLI needs to know where to find your compiled examples. You can set this up by exporting
+the <code>BROOKLYN_CLASSPATH</code> environment variable in the following way:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">export </span><span class="nv">BROOKLYN_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">BROOKLYN_EXAMPLES_DIR</span><span class="k">}</span>/simple-messaging-pubsub/target/classes
+</code></pre>
+</div>
+
+
+<p>The project <code>${BROOKLYN_EXAMPLES_DIR}/simple-messaging-pubsub</code> includes a deployment
 descriptor for our example messaging application and simple <em>Publish</em>
 and <em>Subscribe</em> JMS test client scripts.</p>
 
@@ -417,8 +465,8 @@ on startup.</p>
 out the Brooklyn <a href="https://www.github.com/brooklyncentral/brooklyn">repository</a>
 as follows:</p>
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-messaging-pubsub/brooklyn-example-simple-messaging-pubsub/bin
-% ./broker.sh
+<div class="highlight"><pre><code class="bash"><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/bin/brooklyn launch --app brooklyn.demo.StandaloneBrokerExample <span class="se">\</span>
+--location localhost
 </code></pre>
 </div>
 
@@ -460,9 +508,9 @@ only argument. Note that the URLs may be different to those printed
 below, and that any unquoted <code>&amp;</code> characters <em>must</em> be escaped,
 if present.</p>
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-messaging-pubsub/brooklyn-example-simple-messaging-pubsub/bin
-% ./publish.sh <span class="s2">&quot;amqp://guest:guest@/localhost?brokerlist=&#39;tcp://localhost:5672&#39;&quot;</span>
-% ./subscribe.sh <span class="s2">&quot;amqp://guest:guest@/localhost?brokerlist=&#39;tcp://localhost:5672&#39;&quot;</span>
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> <span class="k">${</span><span class="nv">BROOKLYN_EXAMPLES_DIR</span><span class="k">}</span>/simple-messaging-pubsub/brooklyn-example-simple-messaging-pubsub/bin
+./publish.sh <span class="s2">&quot;amqp://guest:guest@/localhost?brokerlist=&#39;tcp://localhost:5672&#39;&quot;</span>
+./subscribe.sh <span class="s2">&quot;amqp://guest:guest@/localhost?brokerlist=&#39;tcp://localhost:5672&#39;&quot;</span>
 </code></pre>
 </div>
 
@@ -492,8 +540,8 @@ messages, as follows:</p>
 this can also be deployed to your favourite cloud, let's pretend
 it's Amazon Ireland, as follows:</p>
 
-<div class="highlight"><pre><code class="bash">% <span class="nb">cd</span> <span class="nv">$EXAMPLES_DIR</span>/simple-messaging-pubsub/brooklyn-example-simple-messaging-pubsub/bin
-<span class="nv">$ </span>./broker.sh aws-ec2:eu-west-1
+<div class="highlight"><pre><code class="bash"><span class="k">${</span><span class="nv">BROOKLYN_HOME</span><span class="k">}</span>/bin/brooklyn launch --app brooklyn.demo.StandaloneBrokerExample <span class="se">\</span>
+--location aws-ec2:eu-west-1
 </code></pre>
 </div>
 
